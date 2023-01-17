@@ -1,8 +1,8 @@
-# DS2022_30442_Neag_Dragos_Assignment_1
+# DS2022_30442_Neag_Dragos_Assignment_3
 
-Energy Platform
+Chat System for Client Support
 
-An online platform should be designed and implemented to manage users, their associated smart energy metering devices, and the monitored data from each device. 
+A chat system that offers support for the clients of the energy platform if they have questions related with their energy consumption. The chat system should allow communication between the clients and the administrator of the system.
 
 # How to install and run the application
 
