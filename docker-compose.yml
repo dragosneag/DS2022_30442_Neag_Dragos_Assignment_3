@@ -1,0 +1,47 @@
+version: "3"
+services:
+  energy-platform-frontend:
+    image: energy-platform-frontend
+    ports:
+      - 3000:3000
+    depends_on:
+      - energy-platform-backend
+    networks:
+      - frontback
+
+  energy-platform-backend:
+    image: energy-platform-backend
+    ports:
+      - "8080:8080"
+    networks:
+      - frontback
+      - energy-platform-mysql
+    depends_on:
+      - mysqldb
+      - rabbitmq
+
+  mysqldb:
+    image: mysql:8
+    networks:
+      - energy-platform-mysql
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_DATABASE=energy-platform
+      
+  rabbitmq:
+    image: rabbitmq:3.11-management
+    container_name: 'rabbitmq_1'
+    ports:
+        - 5672:5672
+        - 15672:15672
+    environment:
+      - RABBITMQ_ERLANG_COOKIE=C.UTF-8
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_Pass=guest
+      - RABBITMQ_DEFAULT_VHOST=/
+    networks:
+      - frontback
+
+networks:
+  energy-platform-mysql:
+  frontback:
